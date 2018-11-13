@@ -1,0 +1,31 @@
+# Uncomment the next line to define a global platform for your project
+# platform :ios, '9.0'
+
+target 'SenderApp' do
+  # Comment the next line if you're not using Swift and don't want to use dynamic frameworks
+  use_frameworks!
+
+  # Pods for SenderApp
+  pod 'R.swift'
+  pod 'IQKeyboardManagerSwift'
+  pod 'CocoaLumberjack/Swift'
+  pod 'Alamofire'
+  pod 'ReachabilitySwift'
+  pod 'SwiftLint'
+  pod 'MBProgressHUD'
+  pod 'SwiftyJSON'
+  pod 'Firebase/Core'
+  pod 'Firebase/Database'
+
+end
+
+# As R.swift is not available for swift 4.2 currently. Remove the below code once the update is out.
+post_install do |installer|
+    installer.pods_project.targets.each do |target|
+        if target.name == 'R.swift.Library'
+            target.build_configurations.each do |config|
+                config.build_settings['SWIFT_VERSION'] = '4'
+            end
+        end
+    end
+end
